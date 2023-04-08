@@ -119,7 +119,7 @@ int main() {															//Главная функция
 				else if (prior(a) <= prior(head->inf)) {				//Если приоритет этого элемента <= приоритета верхушки стека
 					cout << "Приоритет символа <= приоритета верхушки стека" << endl;
 
-					while (prior(a) <= prior(head->inf) && head) {		//Пока стек не пуст и приоритет этого символа меньше/равен приоритету верхушки стека
+					while (head && prior(a) <= prior(head->inf)) {		//Пока стек не пуст и приоритет этого символа меньше/равен приоритету верхушки стека
 						cout << "Верхушка стека = " << head->inf << endl;
 						result_str += head->inf;                        //Добавляем верхушку стека в result_str и проходим так по стеку
 						cout << "result_str = " << result_str << endl;
@@ -157,6 +157,77 @@ int main() {															//Главная функция
 	cout << "Исходное математическое выражение: " << str << endl;		//Вывод ответа
 	cout << "Вывод в постфиксной форме:         " << result_str << endl << endl;
 
+	/////////////////////////////////////////////////////
+	cout << "--------------------------------------------------------------------------------" << endl;
+	cout << endl << "Часть 2: Вычисление значения выражения в постфиксной форме" << endl;
+	cout << "Выражение в постфиксной форме = " << result_str << endl << endl;
+	stack* head2 = NULL;												//Инициализируем новый стек
+	int sum = 0;
+	for (size_t i = 0; i < result_str.size(); i++) {							//Проходимся по всей строке
+		char symbol = result_str[i];
+		cout << "symbol = " << symbol << endl;
+		if (isdigit(symbol) || isalpha(symbol)) {
+			push(head2, symbol);
+		}
+		else {
+			//
+			stack* r = head2;											//Копируем стек с головой head
+			if (r) {
+				cout << "Вывод содержимого стека для наглядности: ";
+				while (r) {												//Пока стек r не пуст
+					char i = r->inf;									//Значение первого элемента
+					cout << i << ' ';									//Вывод содержимого стека
+					r = r->next;										//Теперь r имеет ссылку на следующий элемент
+				}
+				cout << endl;
+			}
+			//
+			char symb_b = pop(head2);
+			char symb_a = pop(head2);
+			cout << "symb_b = " << symb_b << " и symb_a = " << symb_a << endl;
+			int b = (symb_b - '0');
+			int a = (symb_a - '0');
+			cout << "b = " << b << " a = " << a << endl;
+			switch (symbol)
+			{
+				case '+':
+					sum = a + b;
+					break;
+				case '-':
+					sum = a - b;
+					break;
+				case '*':
+					sum = a * b;
+					break;
+				case '/':
+					sum = a / b;
+					break;
+				default:
+					cout << "Неправильный символ" << endl;
+					break;
+			}
+			if (sum) {
+				char sum_ch;
+				cout << "sum(int) = " << sum << endl;
+				sum_ch = sum + '0';
+				cout << "sum_ch(char) = " << sum_ch << endl;
+				push(head2, sum_ch);
+			}
+			cout << endl;
+		}
+	}
+
+	if (head2) {
+		cout << "Это постфиксное выражение равно: ";
+		char ans = pop(head2);
+		int ans_int = ans - '0';
+		cout << ans_int << endl << endl;
+	}
+	/////////////////////////////////////////////////////////
+
+
 	system("Pause");													//Пауза
 	return 0;															//Конец программы
 }
+
+//5+(3+(2+4*(3-1)+2)/4+1)*4
