@@ -1,40 +1,48 @@
-#include <iostream>						//Подключение библиотеки ввода-вывода
-#include <string>
+/*
+Данную программу выполнил Стеклянников Пётр Сергеевич из 151 группы. © Все права защищены.
+*/
+
+/*
+Дано математическое выражение. Перевести его в постфиксную форму.
+
+Примеры для ввода:
+
+5+(3+(2+4*(3-1)+2)/4+1)*4
+5*(2+3*7)+4
+a*(b+c*d)+e
+
+*/
+
+
+#include <iostream>										//Подключение библиотеки ввода-вывода
+#include <string>										//Подключение библиотеки строк
 using namespace std;
 
 
-struct stack {							//Стек описывается как struct следующим образом
+struct stack {											//Стек описывается как struct следующим образом
 	char inf;
 	stack* next;
 };
 
 
-void push(stack*& h, char x) {			//Функция добавления элемента в стек
-	stack* r = new stack;				//Создаём новый элемент
-	r->inf = x;							//Информационное поле inf = x
-	r->next = h;						//Cледующим элементов является h
-	h = r;								//Теперь r является головой
+void push(stack*& h, char x) {							//Функция добавления элемента в стек
+	stack* r = new stack;								//Создаём новый элемент
+	r->inf = x;											//Информационное поле inf = x
+	r->next = h;										//Cледующим элементов является h
+	h = r;												//Теперь r является головой
 }
 
 
-char pop(stack*& h) {					//Функция удаления элемента из стека (и возвращение его значения)
-	int i = h->inf;						//Значение первого элемента
-	stack* r = h;						//Указатель на голову стека
-	h = h->next;						//Переносим указатель на следующий элемент
-	delete r;							//Удаляем первый элемент
-	return i;							//Возвращаем значение
+char pop(stack*& h) {									//Функция удаления элемента из стека (и возвращение его значения)
+	char i = h->inf;									//Значение первого элемента
+	stack* r = h;										//Указатель на голову стека
+	h = h->next;										//Переносим указатель на следующий элемент
+	delete r;											//Удаляем первый элемент
+	return i;											//Возвращаем значение
 }
 
 
-void reverse(stack*& h) {				//Функция "обращения" стека
-	stack* head1 = NULL;				//Инициализация буферного стека
-	while (h)							//Пока стек не пуст
-		push(head1, pop(h));			//Переписываем из одного стека в другой
-	h = head1;							//Переобозначаем указатели
-}
-
-
-int prior(char &a) {
+int prior(char &a) {									//Определяем "приоритет" символа в зависимости от того, что это за символ
 	if (a == '(') {
 		return 1;
 	}
@@ -44,7 +52,7 @@ int prior(char &a) {
 	else if (a == '*' || a == '/') {
 		return 3;
 	}
-	else if (isdigit(a)) {
+	else if (isdigit(a) || isalpha(a)) {
 		return 4;
 	}
 	else if (a == ' ') {
@@ -53,75 +61,102 @@ int prior(char &a) {
 	else {
 		return 6;
 	}
-
 }
 
 
-int main() {							//Главная функция
+int main() {															//Главная функция
 	setlocale(LC_ALL, "RUS");
 
 	string str, result_str = "";
 	cout << "Выражение в инфиксной форме:" << endl;
-	getline(cin, str);
-	//str += '.';
-	cout << str << endl;
-	stack* head = NULL;					//Инициализация
+	getline(cin, str);													//Вводим Математическое выражение (то есть строку, можно с пробелами)
+	cout << endl;
+	stack* head = NULL;													//Инициализация стека
 
-	for (size_t i = 0; i < str.size(); i++) {
-		char a = str[i];
-		cout << "a = " << a << endl;
-		if (a == ' ') {
-			cout << "pustota" << endl;
+	for (size_t i = 0; i < str.size(); i++) {							//Проходимся по всей строке
+		char a = str[i];												//i-тый элемент
+		cout << "Элемент = " << a << endl;								//Выводим элемент (для наглядности)
+		
+		if (a == ' ') {													//Если есть пробелы, мы их просто пропускаем
+			cout << "Пробел, следовательно пропускаем" << endl;
 			continue;
 		}
-		if (isdigit(a)) {
-			result_str += a;
+		
+		if (isdigit(a) || isalpha(a)) {									//Если элемент - это число или буква
+			cout << "Добавляем элемент в результирующую строку:" << endl;
+			result_str += a;											//Записываем в результирующую строку и выводим её (для наглядности)
 			cout << "result_str = " << result_str << endl;
 		}
-		if (a == '(') {
-			cout << "(" << endl;
-			push(head, a);
+
+		if (a == '(') {													//Если элемент - это '(', то есть открывающая скобка
+			cout << "Добавляем эл-т '(' в стек" << endl;
+			push(head, a);												//То добавляем её в стек
 		}
-		if ((a == '+' || a == '-' || a == '*' || a == '/') && !head) {
-			cout << "+-*/!" << endl;
-			push(head, a);
-		}
-		if (a == ')') {
-			cout << ")" << endl;
-			while (head->inf != '(') {
-				char s = pop(head);
-				result_str += s;
-			}
-			//извлекаем закрывающую скобку
-		}
-		if (a == '+' || a == '-' || a == '*' || a == '/') {
-			cout << "davau" << endl;
-			if (prior(a) > prior(head->inf)) {
-				push(head, a);
-			}
-		
-			else {
-				cout << "nu davai" << endl;
-				while (prior(a) <= prior(head->inf)) {
-					char s = pop(head);
-					result_str += s;
-					cout << "result_str = " << result_str << endl;
+
+		if (a == '+' || a == '-' || a == '*' || a == '/') {				//Если элемент - это знак операции + - / *
+			stack* r = head;											//Копируем стек с головой head
+			if (r) {
+				cout << "Вывод содержимого стека для наглядности: ";
+				while (r) {												//Пока стек r не пуст
+					char i = r->inf;									//Значение первого элемента
+					cout << i << ' ';									//Вывод содержимого стека
+					r = r->next;										//Теперь r имеет ссылку на следующий элемент
 				}
+				cout << endl;
+			}
+
+			if (!head) {												//Если стек пуст, то добавляем этот элемент в стек
+				cout << "Стек head пуст, добавим в него этот элемент" << endl;
 				push(head, a);
 			}
+
+			else if (head) {											//Если стек не пуст										
+				if (prior(a) > prior(head->inf)) {						//Если приоритет этого элемента больше приоритета верхушки стека
+					cout << "Приоритет символа больше приоритета верхушки стека, поэтому просто добавим этот символ в стек" << endl;
+					push(head, a);
+				}
+
+				else if (prior(a) <= prior(head->inf)) {				//Если приоритет этого элемента <= приоритета верхушки стека
+					cout << "Приоритет символа <= приоритета верхушки стека" << endl;
+
+					while (prior(a) <= prior(head->inf) && head) {		//Пока стек не пуст и приоритет этого символа меньше/равен приоритету верхушки стека
+						cout << "Верхушка стека = " << head->inf << endl;
+						result_str += head->inf;                        //Добавляем верхушку стека в result_str и проходим так по стеку
+						cout << "result_str = " << result_str << endl;
+						head = head->next;
+					}
+
+					cout << "А теперь добавим сам элемент в стек" << endl;
+					push(head, a);
+				}
+			}
 		}
-		cout << "prohod" << endl;
+
+		if (a == ')') {													//Если элемент = закрывающей скобке
+			while (a != '(') {											//Пока не встретится открывающая скобка, удаляем из стека верхушку и добавляем её в result_str
+				a = pop(head);
+				cout << "Верхушка элемента = " << a << endl;
+				result_str += a;
+				cout << "result_str = " << result_str << endl;
+			}
+			result_str.resize(result_str.size() - 1);					//Удаляем последний элемент, то есть '('
+			cout << "result_str теперь = " << result_str << endl;
+		}
+		cout << endl;
 	}
 
-	while (head) {
-		cout << "nuuuuuu" << endl;
+	cout << "Строка пройдена, теперь добавим оставшиеся в стеке элементы в result_str" << endl;
+	while (head) {														//Пока стек не пуст, удаляем из него элементы и добавляем их в результирующую строку
 		char s = pop(head);
+		cout << "Верхушка стека = " << s << endl;
 		result_str += s;
+		cout << "result_str = " << result_str << endl;
 	}
-	
-	cout << "Ответ: " << endl;
-	cout << result_str << endl;
+	cout << endl << endl;
 
-	system("Pause");					//Пауза
-	return 0;							//Конец программы
+	cout << "Исходное математическое выражение: " << str << endl;		//Вывод ответа
+	cout << "Вывод в постфиксной форме:         " << result_str << endl << endl;
+
+	system("Pause");													//Пауза
+	return 0;															//Конец программы
 }
