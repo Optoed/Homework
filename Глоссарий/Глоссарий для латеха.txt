@@ -1,0 +1,168 @@
+\section*{А}
+
+1. \textbf{АСУ ТП} (\textit{}) ~--- 
+
+\section*{Б}
+
+2. \textbf{Баг} (\textit{}) ~--- 
+
+3. \textbf{Бизнес аналитик} (\textit{}) ~--- 
+
+4. \textbf{Бортовое ПО} (\textit{}) ~--- 
+
+5. \textbf{Брокер сообщений} (\textit{}) ~--- 
+
+\section*{В}
+
+6. \textbf{Верификация ПО} (\textit{}) ~--- 
+
+\section*{Л}
+
+7. \textbf{Логи} (\textit{}) ~--- 
+
+8. \textbf{Логирование} (\textit{}) ~--- 
+
+\section*{М}
+
+9. \textbf{Микро-сервисная архитектура} (\textit{}) ~--- 
+
+10. \textbf{Микросервисы} (\textit{}) ~--- 
+
+\section*{П}
+
+11. \textbf{Программный аналитик} (\textit{}) ~--- 
+
+\section*{С}
+
+12. \textbf{Свёрточные сети} (\textit{}) ~--- 
+
+13. \textbf{Системный аналитик} (\textit{}) ~--- 
+
+\section*{Т}
+
+14. \textbf{Технологическое ПО} (\textit{}) ~--- 
+
+15. \textbf{Толстый клиент} (\textit{}) ~--- 
+
+16. \textbf{Тонкий клиент} (\textit{}) ~--- 
+
+17. \textbf{Требования высокого уровня} (\textit{}) ~--- 
+
+18. \textbf{Требования низкого уровня} (\textit{}) ~--- 
+
+\section*{Ф}
+
+19. \textbf{Файловая СУБД} (\textit{}) ~--- 
+
+\section*{Х}
+
+20. \textbf{Хакатон} (\textit{}) ~--- 
+
+\section*{Ч}
+
+21. \textbf{Черный ящик} (\textit{}) ~--- 
+
+\section*{1}
+
+22. \textbf{1С} (\textit{}) ~--- 
+
+23. \textbf{1С-консультант} (\textit{}) ~--- 
+
+24. \textbf{1С-программист} (\textit{}) ~--- 
+
+25. \textbf{1С:Бухгалтерия} (\textit{}) ~--- 
+
+26. \textbf{1С:Предприятие} (\textit{}) ~--- 
+
+\section*{A}
+
+27. \textbf{API} (\textit{}) ~--- 
+
+28. \textbf{Agile} (\textit{}) ~--- 
+
+\section*{B}
+
+29. \textbf{Back-тестировщик} (\textit{}) ~--- 
+
+30. \textbf{Backend} (\textit{}) ~--- 
+
+31. \textbf{Big Data} (\textit{}) ~--- 
+
+32. \textbf{Business Intelligence} (\textit{}) ~--- 
+
+\section*{C}
+
+33. \textbf{Cloud Services} (\textit{}) ~--- 
+
+\section*{D}
+
+34. \textbf{Data Mining} (\textit{}) ~--- 
+
+35. \textbf{Data Science} (\textit{}) ~--- 
+
+36. \textbf{DataBase} (\textit{}) ~--- 
+
+37. \textbf{Deploy} (\textit{}) ~--- 
+
+38. \textbf{DevOps} (\textit{}) ~--- 
+
+\section*{E}
+
+39. \textbf{ERP-системы} (\textit{}) ~--- 
+
+\section*{F}
+
+40. \textbf{Fast Data} (\textit{}) ~--- 
+
+41. \textbf{Frontend} (\textit{}) ~--- 
+
+42. \textbf{Full stack} (\textit{}) ~--- 
+
+\section*{G}
+
+43. \textbf{Generate Adversarial Networks} (\textit{}) ~--- 
+
+\section*{J}
+
+44. \textbf{Junior} (\textit{}) ~--- 
+
+\section*{K}
+
+45. \textbf{Kibana} (\textit{}) ~--- 
+
+\section*{L}
+
+46. \textbf{Lead} (\textit{}) ~--- 
+
+\section*{M}
+
+47. \textbf{Middle} (\textit{}) ~--- 
+
+48. \textbf{Mlops} (\textit{}) ~--- 
+
+\section*{O}
+
+49. \textbf{Open source проект} (\textit{}) ~--- 
+
+\section*{Q}
+
+50. \textbf{QA-инженер} (\textit{}) ~--- 
+
+\section*{S}
+
+51. \textbf{SAP} (\textit{}) ~--- 
+
+52. \textbf{SRE-инженер} (\textit{}) ~--- 
+
+53. \textbf{Senior} (\textit{}) ~--- 
+
+54. \textbf{Soa} (\textit{}) ~--- 
+
+\section*{U}
+
+55. \textbf{UI/UX} (\textit{}) ~--- 
+
+\section*{W}
+
+56. \textbf{Web-тестировщик} (\textit{}) ~--- 
+
