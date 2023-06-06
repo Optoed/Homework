@@ -1,0 +1,29 @@
+0:  Kalugin        Middle    14.08.1970    4     48000          
+1:  Ignatov        Junior    24.12.1987    1     43000          
+2:  Ivanov         Intern    12.05.1970    2     52000          
+3:  Petrov         Junior    20.01.1985    3     40000          
+4:  Sidorov        Middle    14.08.1970    4     101000         
+5:  Vasiliev       Middle    13.01.1990    5     34000          
+6:  Aleksandrov    Middle    18.02.1974    6     57000          
+7:  Belov          Middle    23.10.1979    7     66000          
+8:  Mamaeva        Senior    24.05.1985    8     130000         
+9:  Aleksandrov    Middle    18.02.1974    9     50000          
+10:  Nosov          Senior    12.01.1980    10    120000         
+11:  Belov          Intern    10.08.1980    3     48000          
+12:  Korobov        Middle    13.03.1996    5     61000          
+13:  Aleksandrov    Middle    21.02.1994    6     80000          
+14:  Dmitriev       Middle    13.08.1975    4     61000          
+15:  Bakunin        Junior    22.06.1965    7     45000          
+16:                           00.00.0       0     0              
+17:  Volkov         Senior    14.05.1995    5     72000          
+18:  Romanov        Junior    29.12.1999    2     30000          
+19:  Belov          Intern    12.08.1981    4     46000          
+20:  Markov         Intern    14.01.1978    2     63000          
+21:                           00.00.0       0     0              
+22:                           00.00.0       0     0              
+23:  Gusev          Intern    12.05.1979    5     55000          
+24:  Zlatov         Senior    20.03.1985    4     59000          
+25:                           00.00.0       0     0              
+26:  Shiryaev       Middle    26.02.1983    8     80000          
+27:  Romanov        Junior    21.01.1985    3     49000          
+28:                           00.00.0       0     0              

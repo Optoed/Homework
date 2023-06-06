@@ -21,11 +21,11 @@
 #include <cmath>
 #include <iterator>
 #include <iomanip>
-#include <stdlib.h>
-#include <stdio.h>
 #include <string>
 #include <cstring>
 
+#include <stdlib.h>
+#include <stdio.h>
 #include <clocale>
 #include <cstdlib>
 #include <windows.h>
