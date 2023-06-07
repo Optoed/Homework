@@ -165,6 +165,14 @@ void HashTableFill(vector<people>& hash_table, vector<people>& x, int m, people 
 }
 
 
+void FillPeople(vector<people>& hash_table, int m, people INF, people elem) { // Добавление человека в хэш-таблицу
+	int pozition = HashFunction(hash_table, elem, m, INF);
+	if (pozition < m) {
+		hash_table[pozition] = elem;
+	}
+}
+
+
 void PeopleOutPrint(people x) {//вывод в файл одного человека
 	out << setw(15) << left << x.Surname;//по левому краю, 15 позиций для фамилии
 	out << setw(9) << left << x.Post;//по левому краю, 15 позиций для должности
@@ -242,6 +250,21 @@ int main() {
 			}
 			else {
 				cout << "\nТакой человек не найден в хэш-таблице.\n";
+				cout << "\nХотите его добавить в таблицу (да/нет)?\n";
+				string answer_insert;
+				cin >> answer_insert;
+
+				while (answer_insert != "нет" && answer_insert != "да") {
+					cout << "\nВы ошиблись, введите слово повторно (только да/нет):\n";
+					cin >> answer_insert;
+				}
+
+				if (answer_insert == "да") {
+					FillPeople(hash_table, m, INF, elem);
+					cout << elem.Surname << " внесён в хэш-таблицу...\n";
+					out << endl << razdelitel() << endl << "Хэш-таблица после добавления нового человека c фамилией " << elem.Surname << "\n" << endl;
+					FileOutPrint(hash_table);  //Вывод в файл содержимого хэш-таблицы
+				}
 			}
 		}
 
