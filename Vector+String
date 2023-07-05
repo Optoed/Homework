@@ -135,7 +135,7 @@ int main() {
 
 	//Строковый итерал
 	string number = "235";
-	int x = stroi("235"); //для int, есть ещё atoi но он гавно и используется в C
+	int x = stoi("235"); //для int, есть ещё atoi но он гавно и используется в C
 	long long z = stoll(w); //для long long
 
 	int w2 = 6233;
