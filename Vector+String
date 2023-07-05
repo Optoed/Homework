@@ -1,0 +1,152 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<string>
+
+using namespace std;
+
+bool comp(int x, int y) {
+	//return (x % y +y) % y; //для сравнения любых чисел (даже отрицательных)
+	return (x % 2) < (y % 2); //для четных сортировка
+}
+
+struct Student {
+	int birth_year;
+	string name;
+	double average_grade;
+
+	Student() {}; //конструктор по умолчанию в g++, в vs можно не писать (если вдруг мы при создании структуры не задали ему аргементов)
+	Student(int birth_year, string name, double average_grade) : birth_year(birth_year), name(name), average_grade(average_grade) {};  //конструктор по умолчанию в g++, в vs можно не писать
+};
+
+bool compare(const Student& a, const Student& b) {
+	if (a.name != b.name) {
+		return a.name > b.name;
+	}
+	if (a.birth_year != b.birth_year) {
+		return a.birth_year < b.birth_year;
+	}
+	return a.average_grade < b.average_grade;
+}
+
+
+int main() {
+	vector<int> v;
+	vector<int> p = { 1, 54, 3, 12, 13, 1543, 2, 41, 17, 1, 3, 12, 53, 33, 1 };
+	vector<int> v2(100);
+	vector<int> v3(100, 0);
+
+	vector<vector<int>> m(5, vector<int>(7, -1));
+
+	m.size();
+
+	m[0].push_back(3);
+	m[1].pop_back();
+
+	m[2].insert(m[2].begin() + 3, 2);
+
+	for (int i = 0; i < m.size() - 1; i++) {
+		for (int j = 0; j < m[i].size(); j++) {
+			cout << m[i][j] << ' ';
+		}
+		cout << "\n";
+	}
+
+	cout << endl;
+
+	for (vector<int>::iterator it = p.begin(); it != p.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl << endl;
+
+	//p.erase(p.begin() + 2);
+	p.erase(p.begin() + 2, p.begin() + 4); //удалит со второго элемента (включительно) и так удалит суммарно 4-2=2 элемента
+
+	for (const auto& x : p) {
+		cout << x << " ";
+	}
+	cout << endl;
+
+	//sort(p.begin(), p.end());
+	//stable_sort(p.begin(), p.end());
+
+	for (const auto& x : p) {
+		cout << x << " ";
+	}
+	cout << endl;
+
+	//sort(p.begin(), p.end(), comp); //сортировка вектора по определенной функции
+
+	for (const auto& x : p) {
+		cout << x << " ";
+	}
+	cout << endl;
+
+	//Макс и мин элемент в векторе
+	cout << "Max and Min in vector" << endl;
+
+	for (const auto& x : p) {
+		cout << x << " ";
+	}
+	cout << endl;
+
+	int mx = *max_element(p.begin(), p.end());
+
+	cout << mx << endl;
+
+	int index = max_element(p.begin(), p.end()) - p.begin();
+
+	cout << index << endl;
+
+	//unique(p.begin(), p.end()); //Закидывает повторяющиеся лишние копии в конец вектора, возвращает итератор на первый лишний элемент
+
+	for (const auto& x : p) {
+		cout << x << " ";
+	}
+	cout << endl;
+
+	p.erase(unique(p.begin(), p.end()), p.end()); //Удаляет все повторяющиеся
+
+	for (const auto& x : p) {
+		cout << x << " ";
+	}
+	cout << endl;
+
+
+	//String
+	cout << endl << "String:" << endl;
+
+	string t = "ABAVASDCS";
+	string s = "SDC";
+	int x = t.find("VA");
+	cout << x << endl;
+
+	if (t.find(s) != string::npos) { //начиная с 3 позиции
+		cout << "YES\n";
+	}
+	else {
+		cout << "NO\n";
+	}
+
+	cout << t.substr(3, 1000); //ошибки не будет, лишнего не выведет хоть и ушли за предел строки; начинает с 3-его (отсчет с 0) элемента и дальше 1000 элементов
+
+	vector<string> sv = { "One", "Two", "Three", "four", "fIve", "SIX" };
+	sort(sv.begin(), sv.end);
+
+	//Строковый итерал
+	string number = "235";
+	int x = stroi("235"); //для int, есть ещё atoi но он гавно и используется в C
+	long long z = stoll(w); //для long long
+
+	int w2 = 6233;
+	string s2 = to_string(w2); //число в строку и можем потом найти s2.size() и узнать разрядность числа
+
+	string alph;
+
+	for (char a = 'A'; a <= 'Z'; a++) {
+		alph += a;
+	}
+	cout << alph << endl; //создание алфавита
+
+
+}
