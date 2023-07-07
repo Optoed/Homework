@@ -1,0 +1,44 @@
+#include <iostream>   //подключение библиотек
+#include <map>
+#include <set>
+#include <vector>
+#include <string>
+#include <stack>
+#include <queue>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <limits.h>
+#include <numeric>
+#include <iterator>
+#include <cctype>
+
+//#include <time.h>
+//#include <iomanip>
+
+using namespace std;
+
+#define watch(x) cout << (#x) << " = " << x << endl;
+#define pow2(x) ((x)*(x))
+#define mod(x, m) ((((x) % (m)) + (m)) % (m))
+#define max3(a, b, c) max(a, max(b, c))
+#define min3(a, b, c) min(a, min(b, c))
+#define max4(a, b, c, d) max(max(a,b),max(c,d));
+#define min4(a, b, c, d) min(min(a,b),min(c,d));
+
+const double pi = 2 * acos(0.0);
+const int oo = 0x3f3f3f3f; //не использовать для long long
+
+
+int main() {
+	ios::sync_with_stdio(false);
+
+	int n;
+	cin >> n;
+	watch(n);
+	cout << mod(5, 3);
+	cout << max3(1, 2, 3) << endl;
+	cout << oo << endl;
+	cout << INT_MAX << endl;
+	//cout << __gcd(6, 20) << endl;
+}
