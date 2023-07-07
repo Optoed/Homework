@@ -1,0 +1,86 @@
+#include <iostream>   //подключение библиотек
+#include <map>
+#include <set>
+#include <vector>
+#include <string>
+#include <stack>
+#include <queue>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <limits.h>
+#include <numeric>
+#include <iterator>
+#include <cctype>
+#include <time.h>
+//#include <iomanip>
+
+using namespace std;
+
+#define watch(x) cout << (#x) << " = " << x << endl;
+#define pow2(x) ((x)*(x))
+#define mod(x, m) ((((x) % (m)) + (m)) % (m))
+#define max3(a, b, c) max(a, max(b, c))
+#define min3(a, b, c) min(a, min(b, c))
+#define max4(a, b, c, d) max(max(a,b),max(c,d));
+#define min4(a, b, c, d) min(min(a,b),min(c,d));
+
+const double pi = 2 * acos(0.0);
+const int oo = 0x3f3f3f3f; //не использовать для long long
+
+
+int main() {
+	ios::sync_with_stdio(false);
+
+	//set
+	set<int> s;  //реализован через дерево бинарного поиска
+
+	s.insert(5); //Вставка
+	s.insert(5);
+	watch(s.size());
+
+	watch(s.count(5)); //выведет либо 1 (если есть 5 в set) либо 0 (если нет)
+
+	s.erase(5);
+
+	s.insert(3);
+	s.insert(2);
+	s.insert(15);
+	s.insert(13);
+
+	for (const auto& elem : s) {
+		watch(elem);
+	}
+	/////////////////////////////////////////////////////////////////////
+	
+	//multiset
+	multiset<int> m;
+	
+	m.insert(5);
+	m.insert(5);
+	m.insert(3);
+	m.insert(7);
+
+
+	watch(m.count(5)); 
+	
+	if (m.count(5)) { //Чтобы не выдало ошибки если вдруг 5 нет в мультисете
+		m.erase(m.find(5));
+	}
+
+	//O(logn)
+	watch(*m.lower_bound(5));  //первый элем >= 5
+	watch(*m.upper_bound(5));  //первый элем > 5 
+
+	vector<int> v = { 1, 15, 3, 5, 4 };
+	lower_bound(v.begin(), v.end(), 6); //записываем именно так, с set тоже можно но будет гораздо дольше работать O(log размер set)
+
+	//Два способа проверить есть ли элемент в set
+	if (m.count(5) == 0); //лучше не используй для multiset если данного эл-та x очень много копий в multiset
+	if (m.find(5) == m.end()); //Хорошо работает в multiset и set, так что это лучше использовать
+
+	set<string> t = { "World", "Hello", "!", "World" };
+	for (auto x : t) {
+		watch(x);
+	}
+}
