@@ -83,4 +83,52 @@ int main() {
 	for (auto x : t) {
 		watch(x);
 	}
+
+	///////////////////////////////////////////////////////////////////////
+	//map
+	map<int, int> mp; //ключ (первое - уникальное) и значение (второе - может повторяться)
+	mp[10] = 5;
+	mp[7] = mp[10] + 3;
+	watch(mp.size());
+	watch(mp[-2]);		//создаст новый элемент при обращении к несуществующему и задаст значение = 0
+	watch(mp.size());  //увеличится на 1
+	mp[3] += 3;  //создал mp[3]= 0 и увеличил значение на 3
+
+	map<string, int> ms;
+	for (int i = 0; i < 5; i++) {
+		string s;
+		cin >> s;
+		ms[s]++;
+	}
+	ms.erase("Bob");
+
+	for (const auto& elem_map : ms) {
+		cout << elem_map.first << " " << elem_map.second << endl;
+	}
+
+	//Для проверки лучше не создавать лишние значения
+	if (ms.find("Alice") != ms.end()) {
+		cout << "Alice is find!\n";
+	}
+
+
+	//Задача на смену хендлов Petya->Petr->Petrucho
+	map<string, string> old_handle;
+	int q;
+	cin >> q;
+	for (int i = 0; i < q; i++) {
+		string x, y;
+		cin >> x >> y; //x - старый и у - новый
+		if (old_handle.find(x) == old_handle.end()) {
+			old_handle[x] = x;
+		}
+		old_handle[y] = old_handle[x];
+		old_handle.erase(x);
+	}
+
+	for (auto x : old_handle) {
+		cout << x.second << " " << x.first << endl; //перевернул (иногда это люто облегчает)
+	}
+
+	//Есть ещё multimap, но он практически нигде не используется тк ключи уже не уникальны и как бы зачем
 }
