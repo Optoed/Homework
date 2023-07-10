@@ -1,0 +1,176 @@
+#include <iostream>   //подключение библиотек
+#include <map>
+#include <set>
+#include <vector>
+#include <string>
+#include <stack>
+#include <queue>
+#include <list>
+#include <algorithm>
+#include <functional>
+#include <cmath>
+#include <limits.h>
+#include <numeric>
+#include <iterator>
+#include <cctype>
+#include <time.h>
+//#include <iomanip>
+
+using namespace std;
+
+/*
+#define watch(x) cout << (#x) << " = " << x << endl;
+#define pow2(x) ((x)*(x))
+#define mod(x, m) ((((x) % (m)) + (m)) % (m))
+#define max3(a, b, c) max(a, max(b, c))
+#define min3(a, b, c) min(a, min(b, c))
+#define max4(a, b, c, d) max(max(a,b),max(c,d));
+#define min4(a, b, c, d) min(min(a,b),min(c,d));
+
+const double pi = 2 * acos(0.0);
+const int oo = 0x3f3f3f3f; //не использовать для long long
+*/
+
+bool compare(pair<int, int> a, pair<int, int> b) {
+	if (a.first - a.second != b.first - b.second) {
+		return a.first - a.second < b.first - b.second;
+	}
+	if (a.first * a.second != b.first * b.second) {
+		return a.first * a.second < b.first * b.second;
+	}
+	return a.first < b.first;
+}
+
+struct Compared {
+	bool operator() (pair<int, int> a, pair<int, int> b) {
+		return a.first < b.first;
+	}
+};
+
+
+void Sort() {
+	int tt = clock();
+	int n = 10;
+	//cin >> n;
+	vector<int> a(n);
+	for (int i = 0; i < n; ++i) {
+		a[i] = rand() % 10;
+	}
+	cout << endl;
+	//sort(a.begin(), a.end(), greater<pair<int,int>>()); less<...>();
+	//sort(a.begin(), a.end(), compare);
+
+	/*
+	stable_sort(a.begin(), a.end(), [&] (pair<int,int> a, pair<int,int> b) {
+		if (a.first - a.second != b.first - b.second) {
+			return a.first - a.second < b.first - b.second;
+		}
+		if (a.first * a.second != b.first * b.second) {
+			return a.first * a.second < b.first * b.second;
+		}
+		return a.first < b.first; }); //nlogn
+	*/
+
+	//nth_element(a.begin(), a.begin() + n / 2, a.end());  O(n)    4 3 1 2 5 7 6 9 8   то есть находим элемент что должен быть на позиции a.begin() + n/2
+
+	for (int i = 0; i < n; ++i) {
+		cout << a[i] << ' ';
+	}
+	cout << endl;
+	cout << (clock() - tt) / (double)CLOCKS_PER_SEC << endl;
+	///////////////////////////////////////////////////////////////////////////////
+	vector<int> p(n);
+	iota(p.begin(), p.end(), 0); //заполняет p от числами 0 до 0+n 
+	sort(p.begin(), p.end(), [&](int i, int j) {  //Выводим числа в отсортированном порядке их расположения
+		if (a[i] != a[j])
+			return a[i] < a[j];
+		return i > j;
+		});
+
+	for (int i = 0; i < n; ++i) {
+		cout << a[i] << ' ';
+	}
+	cout << endl;
+
+	for (int i = 0; i < n; ++i) {
+		cout << p[i] << ' ';
+	}
+	cout << endl;
+
+	///////////////////////////////////////////////////
+	//set<pair<int, int>, Compared> s;
+	/*
+	set<pair<int, int>> s;
+
+	for (int i = 0; i < n; i++) {
+		int x, y;
+		cin >> x >> y;
+		s.insert(make_pair(x, y));
+	}
+	for (auto it : s) {
+		cout << it.first << ' ' << it.second << endl;
+	}
+	cout << endl;
+	*/
+
+	////////////////////////////////////////////////////
+	/*
+	vector<int> av(n);
+	for (int i = 0; i < n; i++) {
+		av[i] = rand() % 15;
+	}
+	sort(av.begin(), av.end(), greater<int>());
+	int m = 3;
+	for (int i = 0; i < m; i++) {
+		int x;
+		x = rand() % 20;
+		int pos = lower_bound(av.begin(), av.end(), x, greater<int>()) - av.begin();
+		cout << pos << endl;
+	}
+	*/
+	//binary_search(a.begin(), a.end(), x);     //true или false в зависимости есть ли в данном массиве a элемент x
+
+	////////////////////////////////////////////////
+	cout << "\nOut\n" << endl;
+	vector<int> av(n);
+	for (int i = 0; i < n; i++) {
+		av[i] = rand() % 15;
+	}
+	for (int i = 0; i < n; i++) {
+		cout << av[i] << " ";
+	}
+	cout << endl;
+	vector<int> xs = av;
+
+	sort(xs.begin(), xs.end());
+	xs.resize(unique(xs.begin(), xs.end()) - xs.begin());
+	vector<int> na(n);
+	for (int i = 0; i < n; ++i) {
+		na[i] = lower_bound(xs.begin(), xs.end(), av[i]) - xs.begin();
+	}
+	vector<int> cnt(xs.size());
+	for (int x : na) {
+		++cnt[x];
+	}
+	for (int x : xs) {
+		cout << x << " ";
+	}
+	cout << endl;
+	for (int x : cnt) {
+		cout << x << " ";
+	}
+	cout << endl;
+
+}
+
+
+int main() {
+	ios::sync_with_stdio(false);
+
+	int t = 1;
+	//cin >> t;
+	while (t--)
+	{
+		Sort();
+	}
+}
