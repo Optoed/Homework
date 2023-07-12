@@ -1,0 +1,154 @@
+#include <iostream>
+#include <vector>
+#include <set>
+#include <map>
+#include <algorithm>
+#include <numeric>
+#include <string>
+#include <string.h>
+#include <cmath>
+#include <stack>
+
+using namespace std;
+using ll = long long; 
+//можешь написать typedef long long li; - будет тоже самое, но вот #define просто заменяет одно на другое и не такой умный так что с ним аккуратней
+
+/*
+vector<int> operator +(vector<int> a, vector<int> b) {
+    vector<int> c(max(a.size(), b.size()));
+    for (int i = 0; i < a.size(); i++) {
+        c[i] += a[i];
+    }
+    for (int i = 0; i < b.size(); i++) {
+        c[i] += b[i];
+    }
+    return c;
+}
+
+vector<int> operator *(vector<int> a, vector<int> b) {
+    vector<int> c(a.size() + b.size() - 1);
+    for (int i = 0; i < a.size(); i++) {
+        for (int j = 0; j < b.size(); j++) {
+            c[i + j] += a[i] * b[j];
+        }
+    }
+    return c;
+}
+
+template<class T>
+ostream& operator <<(ostream& out, vector<T> a) {
+    out << "[";
+    for (int i = 0; i < int(a.size()); i++) {
+        if (i) {
+            out << ", ";
+        }
+        out << "]";
+    }
+    return out;
+}
+
+template<class A, class B>
+ostream& operator <<(ostream& out, pair<A, B> a) {
+    return out << "(" << a.first << ", " << a.second << ")";
+}
+
+typedef pair<int, int> pt;
+
+struct point {
+    int x, y;
+};
+
+long long operator %(point a, point b) {
+    return a.x * b.y - a.y * b.x;
+}
+
+bool operator < (point a, point b) {
+    if (a.x != b.x) return a.x < b.x;
+    return a.y < b.y;
+}
+*/
+
+
+//Скобочная последовательность
+//  (())(()())
+void solve() {
+    string s;
+    cin >> s;
+    vector<int> st;  //был char
+    vector<int> pr(s.size());
+
+    for (int i = 0; i < int(s.size()); ++i) { //for (char c : s) {
+        if (s[i] == '(') { // if (c == '(') st.push_back(c);
+            st.emplace_back(i);
+        }
+        else {
+            if (st.empty()) {
+                cout << "NO\n";
+                exit(0);
+                //можешь ещё --bal для балланса добавить
+            }
+            pr[st.back()] = i; //это добавили
+            pr[i] = st.back(); //это тоже добавили
+            st.pop_back();
+        }
+    }
+    //cout << (st.empty() ? "YES\n" : "NO\n") << endl;
+
+    //for (int x : pr) cerr << x << ' ';
+   
+
+
+    //Какая-то задачка
+    int n; 
+    cin >> n;
+    string tp;
+    vector<int> st1(1, 0);
+    vector<int> mx(1, 0);
+    for (int i = 0; i < n; ++i) {
+        string tp;
+        cin >> tp;
+        if (tp == "+") {
+            int x;
+            cin >> x;
+            st1.push_back(x);
+            mx.push_back(max(x, mx.back()));
+        }
+        else if (tp == "-") {
+            st1.pop_back();
+            mx.pop_back();
+        }
+        else {
+            cout << mx.back() << "\n";
+        }
+    }
+
+
+
+    //NOD and NOK существуют в С++ начиная С++17
+    int a, b;
+    gcd(a, b); //NOD
+    lcm(a* long long int, b * long long int); //NOK чтобы не словить переполнение приведи к long long
+    //a * long long int * b / gcd(a,b);
+
+
+
+    //Полезные штуки
+    vector<int> a1(10);
+    iota(a1.begin(), a1.end(), 1);
+    rotate(a1.begin(), a1.begin() + 3, a1.end());
+    for (int x : a1) cerr << x << " ";
+    cerr << "\n";
+    long long suma = accumulate(a1.begin(), a1.end(), 0ll); //long long int это
+    cout << suma << "\n";
+
+
+}
+
+
+int main() {
+    int t = 1;
+    //cin >> t;
+    while (t--) {
+        solve();
+    }
+}
