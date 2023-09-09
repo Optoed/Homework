@@ -1,5 +1,11 @@
-// ConsoleApplication1.cpp: определяет точку входа для консольного приложения.
-//
+//Made by Optoed.
+//All rights reserved В© 
+
+
+//РЎСЋР¶РµС‚: 
+//РњС‹, РєР°Рє РёСЃС‚РёРЅРЅС‹Рµ РіР°СЃС‚СЂРѕРЅРѕРјРёС‡РµСЃРєРёРµ РіРµРЅРёРё, Р»СЋР±РёРј РіРѕС‚РѕРІРёС‚СЊ Рё РїСЂРѕР±РѕРІР°С‚СЊ РЅРѕРІС‹Рµ РёР·С‹СЃРєР°РЅРЅС‹Рµ Р±Р»СЋРґР°. Р’ РѕС‡РµСЂРµРґРЅРѕР№ СЂР°Р·, РїСЂРёРґСЏ РІ РЅР°С€ Р»СЋР±РёРјС‹Р№ РґРѕСЂРѕРіСѓС‰РёР№ РјР°РіР°Р·РёРЅ, РјС‹ СѓР·РЅР°С‘Рј,
+//С‡С‚Рѕ РґРѕ РєРѕРЅС†Р° РіРѕРґР° РІ СЌС‚РѕРј РјР°РіР°Р·РёРЅРµ (Р° РІ РґСЂСѓРіРёРµ РјС‹ С…РѕРґРёС‚СЊ РЅРµ С…РѕС‚РёРј) Р±СѓРґРµС‚ РїСЂРѕРґР°РІР°С‚СЊСЃСЏ С‚РѕР»СЊРєРѕ СЂС‹Р±Р° (Р¶РёРІР°СЏ РёР»Рё СѓР¶Рµ РЅРµ РѕСЃРѕР±Рѕ).
+//РђС… РґР°, С‡СѓС‚СЊ РЅРµ Р·Р°Р±С‹Р», СЂС‹Р±Р° РјРѕР¶РµС‚ РѕРєР°Р·Р°С‚СЊСЃСЏ РїСЂРѕСЃСЂРѕС‡РµРЅРЅРѕР№ (Рё СЃС‚Р°РЅРµС‚ СЏРґРѕРІРёС‚РѕР№), Р»РёР±Рѕ РёР·РЅР°С‡Р°Р»СЊРЅРѕ Р±С‹Р»Р° СЏРґРѕРІРёС‚РѕР№... РЈРґР°С‡Рё)
 
 //#include "stdafx.h"
 #include <iostream>
@@ -7,61 +13,97 @@
 
 using namespace std;
 
-//специальный тип данных, чтобы узнать - правильно ли создан объект класса или нет
-enum StatusEr
-{
-	Err, OK
+#define endl '\n'
+#define see(x) cout << (#x) << " = " << x << endl
+
+struct KPFC { //СЌС‚Рѕ РљР‘Р–РЈ СЂС‹Р±С‹))
+	double kilocalories;
+	double proteins;
+	double fats;
+	double carbohydrates;
 };
 
-//Описание класса Кошки
-class Fish
+//enum StatusEr //СЃРїРµС†РёР°Р»СЊРЅС‹Р№ С‚РёРї РґР°РЅРЅС‹С…, С‡С‚РѕР±С‹ СѓР·РЅР°С‚СЊ - РїСЂР°РІРёР»СЊРЅРѕ Р»Рё СЃРѕР·РґР°РЅ РѕР±СЉРµРєС‚ РєР»Р°СЃСЃР° РёР»Рё РЅРµС‚
+//{
+//	Err, OK //РїРѕРјРµРЅСЏР» РјРµСЃС‚Р°РјРё РґР»СЏ СѓРґРѕР±СЃС‚РІР°, С‡С‚РѕР±С‹ Err = 0 (РєР°Рє Р±СѓРґС‚Рѕ false) Рё OK = 1 (РєР°Рє Р±СѓРґС‚Рѕ true)
+//};
+
+
+class Fish //РћРїРёСЃР°РЅРёРµ РєР»Р°СЃСЃР° Р С‹Р±С‹
 {
 public:
-	Fish(int weight, int age, bool gender, bool predatory, string habitat, string KPFC, int cost, bool poisonous); // конструктор - задаем породу, цвет, вес и год рождения, сделать надо при создании, 
-											  // так как считаем, что не может быть кошка с пустой породой, бесцветная, с нулевым весом и без возраста
-	Fish() { Status = Err; }				  // конструктор по умолчанию - добавляется для работы с указателями - нужен только для создания динамического объекта, 
-											  // поэтому не может использовать в других случаях!
+
+	Fish(bool FISH_IS_BOUGHT, double weight_in_kilo, bool alive, int shelf_life, bool poisonous, int cost_per_kilo, KPFC kpfc, int cooking_time);  //string name, string gender, string habitat, string predatory - СЂРµС€РёР» СѓР±СЂР°С‚СЊ
+	// РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ - Р·Р°РґР°РµРј РїРѕР», РјРµСЃС‚Рѕ РѕР±РёС‚Р°РЅРёСЏ, С…РёС‰РЅРѕСЃС‚СЊ, РІРµСЃ, РІРѕР·СЂР°СЃС‚ (Рё СЃСЂРѕРє РіРѕРґРЅРѕСЃС‚Рё), СЏРґРѕРІРёС‚РѕСЃС‚СЊ, СЃС‚РѕРёРјРѕСЃС‚СЊ РІ РјР°РіР°Р·РёРЅРµ, РљР‘Р–РЈ, РІСЂРµРјСЏ РіРѕС‚РѕРІРєРё - Р·Р°РїРѕР»РЅСЏРµРј РїСЂРё СЃРѕР·РґР°РЅРёРё
+	// С‚Р°Рє РєР°Рє СЃС‡РёС‚Р°РµРј, С‡С‚Рѕ СЂС‹Р±Р° РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ "РёРЅРєРѕРіРЅРёС‚Рѕ" Р±РµР· РґР°РЅРЅС‹С…
+	Fish() { Status = false };				  // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ - РґРѕР±Р°РІР»СЏРµС‚СЃСЏ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ СѓРєР°Р·Р°С‚РµР»СЏРјРё - РЅСѓР¶РµРЅ С‚РѕР»СЊРєРѕ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РґРёРЅР°РјРёС‡РµСЃРєРѕРіРѕ РѕР±СЉРµРєС‚Р°, 
+	// РїРѕСЌС‚РѕРјСѓ РЅРµ РјРѕР¶РµС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РІ РґСЂСѓРіРёС… СЃР»СѓС‡Р°СЏС…!
 	~Fish();
-//геттеры/селекторы - узнать значение атрибута (поля, характеристики объекта)
-	string getPoroda();
-	int getYearBirth();
-	int getVes();
-	string getColor();
-	string getName();
-// специальный
-	bool getStatus(); //прежде чем начать работу с кошкой - узнать, а можно ли с ней работать
-//сеттеры/модификаторы - установить (изменить) значение атрибута (поля, характеристики объекта), если это разрешено
-	bool setUpVes(int v); //кошка может увеличить вес
-	bool setDownVes(int v); //кошка может уменьшить вес
-	bool setName(string nm); //кошка дали имя, или изменили его
-//действия
-	void Go();    // кошка идет
-	void Voice(); // кошка мяукает 
-	void Print(); //вывод информации о конкретном объекте, в дальнейшем лучше заменить на перегрузку операторов вывода!
+	//РіРµС‚С‚РµСЂС‹/СЃРµР»РµРєС‚РѕСЂС‹ - СѓР·РЅР°С‚СЊ Р·РЅР°С‡РµРЅРёРµ Р°С‚СЂРёР±СѓС‚Р° (РїРѕР»СЏ, С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё РѕР±СЉРµРєС‚Р°)
+	bool getFish_is_Bought();  //Р•СЃР»Рё РЅРµ СѓРєР°Р·Р°РЅРѕ, Р·РЅР°С‡РёС‚ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РќР• РєСѓРїР»РµРЅР°
+	double getWeight_in_kilo();
+	int getShelf_life();
+	bool getPoisonous();   //РµСЃР»Рё РЅРµ СѓРєР°Р·Р°РЅРѕ, Р·РЅР°С‡РёС‚ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РќР• СЏРґРѕРІРёС‚Р°
+	bool getAlive();		//РµСЃР»Рё РЅРµ СѓРєР°Р·Р°РЅРѕ, Р·РЅР°С‡РёС‚ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РќР• Р¶РёРІР°
+	int getCost_per_kilo();
+	KPFC getKpfc();
+	int getCooking_time();
+	// СЃРїРµС†РёР°Р»СЊРЅС‹Р№
+	bool getStatus(); //РїСЂРµР¶РґРµ С‡РµРј РЅР°С‡Р°С‚СЊ СЂР°Р±РѕС‚Сѓ СЃ СЂС‹Р±РѕР№ - СѓР·РЅР°С‚СЊ, Р° РјРѕР¶РЅРѕ Р»Рё СЃ РЅРµР№ СЂР°Р±РѕС‚Р°С‚СЊ
+
+	//СЃРµС‚С‚РµСЂС‹/РјРѕРґРёС„РёРєР°С‚РѕСЂС‹ - СѓСЃС‚Р°РЅРѕРІРёС‚СЊ (РёР·РјРµРЅРёС‚СЊ) Р·РЅР°С‡РµРЅРёРµ Р°С‚СЂРёР±СѓС‚Р° (РїРѕР»СЏ, С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё РѕР±СЉРµРєС‚Р°), РµСЃР»Рё СЌС‚Рѕ СЂР°Р·СЂРµС€РµРЅРѕ
+	int setShelf_life(int days); //РµСЃР»Рё РїРѕРґРѕР¶РґР°С‚СЊ РЅРµСЃРєРѕР»СЊРєРѕ (n) РґРЅРµР№, С‚Рѕ РєРѕР»РёС‡РµСЃС‚РІРѕ РґРЅРµР№ РґРѕ РёСЃС‚РµС‡РµРЅРёСЏ СЃСЂРѕРєР° РіРѕРґРЅРѕСЃС‚Рё СѓРјРµРЅСЊС€РёС‚СЃСЏ РЅР° n
+	//string setName(string name); //РњС‹ РјРѕР¶РµРј РґР°С‚СЊ РёРјСЏ СЃРІРѕРµР№ СЂС‹Р±Рµ (..Р° РїРѕС‚РѕРј РµС‘ СЃСЉРµСЃС‚СЊ)
+
+	//РґРµР№СЃС‚РІРёСЏ СЂС‹Р±С‹
+	void DoNothing();  // СЂС‹Р±Р° РјРѕР¶РµС‚ РЅРёС‡РµРіРѕ РЅРµ РґРµР»Р°С‚СЊ
+	void PlayDead();   // СЂС‹Р±Р° РјРѕР¶РµС‚ РїСЂРёС‚РІРѕСЂРёС‚СЊСЃСЏ РјС‘СЂС‚РІРѕР№ Рё РїРѕРїС‹С‚Р°С‚СЊСЃСЏ РЅР°СЃ РѕР±РјР°РЅСѓС‚СЊ
+
+	//РЅР°С€Рё РґРµР№СЃС‚РІРёСЏ СЃ СЌС‚РѕР№ СЂС‹Р±РѕР№
+	void Buy_fish(); //РєСѓРїРёС‚СЊ
+	void Kill_fish(); //РЅСѓ...
+	void Cook_and_Eat_fish(); //РїСЂРёРіРѕС‚РѕРІРёС‚СЊ Рё СЃСЉРµСЃС‚СЊ
+	void FishLivesMatter(); //РѕСЃРІРѕР±РѕРґРёС‚СЊ СЂС‹Р±Сѓ
 
 private:
-	string Poroda;
-	int YearBirth;
-	int Ves;
-	string Color;
-	string Name;
-	int Status; //а можно ли с кошкой работать, или есть неверно определенные параметры
 
-	bool ChangeVes(int v); //служебный метод класса, недоступен извне! Сделан для того, чтобы единым образом проверять на допустимость попытку изменить вес кошки
+	bool FISH_IS_BOUGHT;
+	double weight_in_kilo;
+	bool alive;
+	int shelf_life;
+	bool poisonous;
+	int cost_per_kilo;
+	KPFC kpfc;
+	int cooking_time;
+
+	bool Status; //Р° РјРѕР¶РЅРѕ Р»Рё СЃ СЂС‹Р±РѕР№ СЂР°Р±РѕС‚Р°С‚СЊ, РёР»Рё РµСЃС‚СЊ РЅРµРІРµСЂРЅРѕ РѕРїСЂРµРґРµР»РµРЅРЅС‹Рµ РїР°СЂР°РјРµС‚СЂС‹ (РЅРµ РІСЃРµ, Р° С‚РѕР»СЊРєРѕ РІР°Р¶РЅС‹Рµ РґР»СЏ РЅР°СЃ, РєР°Рє РґР»СЏ РїРѕРєСѓРїР°С‚РµР»СЏ, Р° РёРјРµРЅРЅРѕ:
+	//weight_in_kilo, alive, shelf_life, poisonous (РЅРѕ РІ РјРѕРјРµРЅС‚Рµ РјС‹ РїСЂРѕ СЌС‚Рѕ РЅРµ Р·РЅР°РµРј), cost_per_kilo, kpfc, cooking_time)
+
+	bool setAlive();  //Р•СЃР»Рё СЂС‹Р±Р° Р±С‹Р»Р° Р¶РёРІРѕР№, С‚Рѕ РјС‹ РјРѕР¶РµРј СЌС‚Рѕ РёР·РјРµРЅРёС‚СЊ..
+	bool setStatus(); //РїРѕРјРµРЅСЏС‚СЊ СЃС‚Р°С‚СѓСЃ РЅР° Err, РµСЃР»Рё РјС‹ РµС‘ СЃСЉРµР»Рё РёР»Рё РѕС‚РїСѓСЃС‚РёР»Рё РЅР° РІРѕР»СЋ..
+	bool setFish_is_Bought(); //Р•СЃР»Рё РѕРЅР° РЅРµ Р±С‹Р»Р° РєСѓРїР»РµРЅР°, С‚Рѕ РєСѓРїРёРІ РµС‘, РјС‹ РёР·РјРµРЅРёРј СЌС‚Рѕ Р·РЅР°С‡РµРЅРёРµ
 };
 
-//реализация
-Fish::Fish(string p, string cl, int v, int yb)
+//СЂРµР°Р»РёР·Р°С†РёСЏ
+Fish::Fish(bool fb, double wik, bool a, int sl, bool p, int cpk, KPFC kk, int ct)
 {
-	if (p == "" || cl == "" || v <= 0 || yb <= 0) //заданы недопустимые значения полей - объект будет создан со статусом ошибка, чтобы нельзя было его использовать
-		Status = Err;
+	if (wik <= 0.0 || cpk <= 0 || ct <= 0 || kk.kilocalories <= 0.0 || kk.proteins <= 0.0 || kk.fats <= 0.0 || kk.carbohydrates < 0.0 || (a == true && sl <= 0))
+		//Р·Р°РґР°РЅС‹ РЅРµРґРѕРїСѓСЃС‚РёРјС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»РµР№ - РѕР±СЉРµРєС‚ Р±СѓРґРµС‚ СЃРѕР·РґР°РЅ СЃРѕ СЃС‚Р°С‚СѓСЃРѕРј РѕС€РёР±РєР°, С‡С‚РѕР±С‹ РЅРµР»СЊР·СЏ Р±С‹Р»Рѕ РµРіРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ
+		Status = false;
+	
 	else {
-		Poroda = p;
-		YearBirth = yb;
-		Ves = v;
-		Color = cl;
-		Name = "Безымянный кот";
-		Status = OK; // всё в порядке, кошка создана
+		FISH_IS_BOUGHT = fb;
+		weight_in_kilo = wik;
+		alive = a;
+		poisonous = p;
+		shelf_life = sl;
+		if (shelf_life <= 0) {  //РµСЃР»Рё СЃСЂРѕРє РіРѕРґРЅРѕСЃС‚Рё РѕРєР°Р·Р°Р»СЃСЏ РїСЂРѕСЃСЂРѕС‡РµРЅРЅС‹Рј, С‚Рѕ СЃСЉРµРІ СЂС‹Р±Сѓ, РјС‹ РѕС‚СЂР°РІРёРјСЃСЏ
+			poisonous = true;
+		}
+		cost_per_kilo = cpk;
+		kpfc = kk;
+		cooking_time = ct;
+		Status = true; // РІСЃС‘ РІ РїРѕСЂСЏРґРєРµ, СЂС‹Р±Р° СЃРѕР·РґР°РЅР°
 	}
 }
 
@@ -69,34 +111,63 @@ Fish::~Fish()
 {
 }
 
-string Fish::getPoroda()
+bool Fish::getFish_is_Bought()
 {
-	if (Status == OK) return Poroda;
-	else return "";
+	if (Status) {
+		return FISH_IS_BOUGHT;
+	}
+	else {
+		return false;
+	}
 }
 
-int Fish::getYearBirth()
-{
-	if (Status == OK) return YearBirth;
-	else return 0;
+double Fish::getWeight_in_kilo() {
+	if (Status) {
+		return weight_in_kilo;
+	}
+	return 0;
 }
 
-int Fish::getVes()
-{
-	if (Status == OK) return Ves;
-	else return 0;
+int Fish::getShelf_life() {
+	if (Status) {
+		return shelf_life;
+	}
+	return 0;
 }
 
-string Fish::getColor() 
-{
-	if (Status == OK) return Color;
-	else return "";
+bool Fish::getPoisonous() {
+	if (Status) {
+		return poisonous;
+	}
+	return false;
 }
 
-string Fish::getName()
-{
-	if (Status == OK) return Name;
-	else return "";
+bool Fish::getAlive() {
+	if (Status) {
+		return alive;
+	}
+	return false;
+}
+
+int Fish::getCost_per_kilo() {
+	if (Status) {
+		return cost_per_kilo;
+	}
+	return 0;
+}
+
+KPFC Fish::getKpfc() {
+	if (Status) {
+		return kpfc;
+	}
+	return { 0.0, 0.0, 0.0, 0.0 };
+}
+
+int Fish::getCooking_time() {
+	if (Status) {
+		return cooking_time;
+	}
+	return 0;
 }
 
 bool Fish::getStatus()
@@ -104,143 +175,212 @@ bool Fish::getStatus()
 	return Status;
 }
 
-
-bool Fish::ChangeVes(int v)
-{
-	int tmpV = Ves + v;
-	bool result = (tmpV >= 0); //не может у кошки быть отрицательный вес
-	if (result) Ves = tmpV; // вес остался положительным и изменился на величину v
-	return result; // вес не изменится, а метод вернет ложь
-}
-
-bool Fish::setUpVes(int v) //кошка может увеличить вес
-{
-	if (Status == OK)
-		if (v <= 0) //отсекаем возможность ввести отрицательный шаг изменения веса, в противном случае можно вместо увеличения веса получить его уменьшение
-			return false;
-		else return ChangeVes(v);
-	else false;
-}
-
-bool Fish::setDownVes(int v) //кошка может уменьшить вес
-{
-	if (Status == OK) 
-		if (v <= 0) //отсекаем возможность ввести отрицательный шаг изменения веса, в противном случае можно вместо уменьшенияя веса получить его увеличение
-			return false;
-		else return ChangeVes(-v);
-	else false;
-}
-
-bool Fish::setName(string nm) //кошка дали имя, или изменили его
-{
-	if (Status == OK)
-		if (nm  == "")   // нельзя дать кошке пустое имя
-			return false;
-		else { 
-			Name = nm;
-			return true;
+int Fish::setShelf_life(int days) {//РµСЃР»Рё РїРѕРґРѕР¶РґР°С‚СЊ РЅРµСЃРєРѕР»СЊРєРѕ (n) РґРЅРµР№, С‚Рѕ РєРѕР»РёС‡РµСЃС‚РІРѕ РґРЅРµР№ РґРѕ РёСЃС‚РµС‡РµРЅРёСЏ СЃСЂРѕРєР° РіРѕРґРЅРѕСЃС‚Рё СѓРјРµРЅСЊС€РёС‚СЃСЏ РЅР° n
+	if (Status) {
+		if (!getAlive()) { //РїРѕРєР° Р¶РёРІР°, СЃСЂРѕРє РіРѕРґРЅРѕСЃС‚Рё РЅРµ РёСЃС‚РµРєР°РµС‚
+			shelf_life -= abs(days);
+			if (shelf_life <= 0) { //СЃС‚Р°Р»Р° СЏРґРѕРІРёС‚РѕР№, С‚Рє СЃСЂРѕРє РіРѕРґРЅРѕСЃС‚Рё РёСЃС‚С‘Рє
+				poisonous = true;
+			}
 		}
-	else false;
-}
+		return shelf_life;
+	}
+	return 0;
+} 
 
-void Fish::Go()    // кошка идет. Ходить может только правильная кошка (та, которая создана)
-{
-	if (Status == OK) {
-		cout << Name.c_str() << " пошел гулять\n";
-		cout << "@  \n";
-		cout << "   @\n";
-		cout << "@  \n";
-		cout << "   @\n";
+void Fish::DoNothing() {
+	if (Status) {
+		if (getAlive) {
+			cout << "Р С‹Р±Р° РїСЂРѕС„РµСЃСЃРёРѕРЅР°Р»СЊРЅРѕ РЅРёС‡РµРіРѕ РЅРµ РґРµР»Р°РµС‚...\n";
+		}
+		else {
+			cout << "РЈ СЂС‹Р±С‹ РЅРµРїР»РѕС…Рѕ РїРѕР»СѓС‡Р°РµС‚СЃСЏ РЅРёС‡РµРіРѕ РЅРµ РґРµР»Р°С‚СЊ (СѓС‡РёС‚С‹РІР°СЏ, С‡С‚Рѕ РѕРЅР° РІСЂРѕРґРµ РєР°Рє РЅРµ Р¶РёРІР°)\n";
+		}
 	}
 }
 
-void Fish::Voice() // кошка мяукает. Мяукать может только правильная кошка (та, которая создана)
-{
-	if (Status == OK) {
-		cout << Name.c_str() <<" сказал " << "M-r-r-r!\n";
+void Fish::PlayDead() {
+	if (Status) {
+		if (getAlive) {
+			cout << "Р С‹Р±Р° РїСЂРёС‚РІРѕСЂРёР»Р°СЃСЊ РјС‘СЂС‚РІРѕР№ РІ РЅР°РґРµР¶РґРµ, С‡С‚Рѕ СЌС‚Рѕ РµР№ РїРѕРјРѕР¶РµС‚ (РЅРµС‚)\n";
+		}
+		else {
+			cout << "Р С‹Р±Р° РєСЂР°Р№РЅРµ РЅР°С‚СѓСЂР°Р»СЊРЅРѕ.. РєС…Рј РїСЂРёС‚РІРѕСЂРёР»Р°СЃСЊ РјС‘СЂС‚РІРѕР№\n";
+		}
 	}
 }
 
-void Fish::Print() // вывод информации о конкретном объекте класса Кошка. Вывести можно информацию только о правильной кошке
-{
-	if (Status == OK) {
-		cout << "\nЭкземпляр класса Кошки: " << "Имя - " << Fish::getName() << ", порода - " << Poroda.c_str() << ",\n";
-		cout << "год рождения - " << YearBirth << ", вес - " << Ves << ".\n";
-		cout << "Ах да, и цвет шёрстки - " << Color.c_str() << "\n\n";
+void Fish::Buy_fish() {
+	if (Status) {
+		if (FISH_IS_BOUGHT == true) {
+			cout << "Р С‹Р±Р° СѓР¶Рµ РєСѓРїР»РµРЅР°\n";
+		}
+		else {
+			cout << "РњС‹ РїРѕРєСѓРїР°РµРј СЌС‚Сѓ СЂС‹Р±РєСѓ Рё РѕС‚РґР°РµРј Р·Р° РЅРµС‘ СЃРІРѕРё РєСЂРѕРІРЅС‹Рµ " << weight_in_kilo * cost_per_kilo << " СЂСѓР±Р»РµР№\n";
+			FISH_IS_BOUGHT = true;
+		}
 	}
 }
+
+void Fish::Kill_fish() {
+	if (Status) {
+		if (alive) {
+			cout << "Р С‹Р±Р° РѕС‚РїСЂР°РІРёР»Р°СЃСЊ Рє РїСЂР°РѕС‚С†Р°Рј\n";
+			alive = false;
+		}
+		else {
+			cout << "Р С‹Р±Р° СѓР¶Рµ Р±С‹Р»Р° РќР•Р¶РёРІРѕР№\n";
+		}
+	}
+}
+
+void Fish::Cook_and_Eat_fish() {
+	if (Status) {
+		if (alive) {
+			cout << "РњС‹ РЅРµ СЃС‚Р°РЅРµРј РєСѓС€Р°С‚СЊ СЂС‹Р±Сѓ Р·Р°Р¶РёРІРѕ\n";
+		}
+		else {
+			cout << "РќР° РїСЂРёРіРѕС‚РѕРІР»РµРЅРёРµ СЂС‹Р±С‹ СѓР№РґС‘С‚ " << cooking_time << " РјРёРЅСѓС‚\n";
+			cout << "Р‘Р»СЋРґРѕ Р±СѓРґРµС‚ СЃРѕРґРµСЂР¶Р°С‚СЊ: " << kpfc.carbohydrates * weight_in_kilo / 10 << " РєРёР»РѕРєР°Р»РѕСЂРёР№,\n"
+				<< kpfc.proteins * weight_in_kilo / 10 << " Р±РµР»РєР°,\n"
+				<< kpfc.fats * weight_in_kilo / 10 << " Р¶РёСЂРѕРІ Рё\n"
+				<< kpfc.carbohydrates * weight_in_kilo / 10 << " СѓРіР»РµРІРѕРґРѕРІ\n";
+
+			Status = false; //С‚Рѕ РµСЃС‚СЊ СЂС‹Р±Р° С‚РµРїРµСЂСЊ РЅР°Рј РЅРµ РґРѕСЃС‚СѓРїРЅР°, С‚Рє РјС‹ РµС‘ СЃСЉРµР»Рё
+
+			if (poisonous) {
+				if (shelf_life > 0) {
+					cout << "РќР°Рј РЅРµ РїРѕРІРµР·Р»Рѕ, СЂС‹Р±Р° РѕРєР°Р·Р°Р»Р°СЃСЊ СЏРґРѕРІРёС‚Р° Рё РјС‹ РѕС‚РїСЂР°РІРёР»РёСЃСЊ РІРјРµСЃС‚Рµ СЃ СЂС‹Р±РѕР№ Рє РїСЂР°РѕС‚С†Р°Рј\n";
+				}
+				else {
+					cout << "РќР°Рј РЅРµ РїРѕРІРµР·Р»Рѕ, СЂС‹Р±Р° РѕРєР°Р·Р°Р»Р°СЃСЊ РїСЂРѕСЃСЂРѕС‡РµРЅРЅРѕР№ Рё РјС‹ РѕС‚РїСЂР°РІРёР»РёСЃСЊ РІРјРµСЃС‚Рµ СЃ СЂС‹Р±РѕР№ Рє РїСЂР°РѕС‚С†Р°Рј\n";
+				}
+				//exit(0); //РќР°С€ РіР»Р°РІРЅС‹Р№ РіРµСЂРѕР№ СѓРјРµСЂ, РїСЂРѕРіСЂР°РјРјР° Р·Р°РІРµСЂС€Р°РµС‚СЃСЏ
+				//system("pause");
+			}
+			else {
+				cout << "РќР°Рј РїРѕРІРµР·Р»Рѕ, СЂС‹Р±Р° РѕРєР°Р·Р°Р»Р°СЃСЊ РќР• СЏРґРѕРІРёС‚РѕР№ Рё РќР• РїСЂРѕСЃСЂРѕС‡РµРЅРЅРѕР№, Рё РјС‹ С…РѕСЂРѕС€Рѕ РїРѕРєСѓС€Р°Р»Рё\n";
+			}
+		}
+	}
+}
+
+void Fish::FishLivesMatter() {
+	if (Status) {
+		if (alive) {
+			cout << "РњС‹ СЂРµС€РёР»Рё РѕСЃРІРѕР±РѕРґРёС‚СЊ СЂС‹Р±Сѓ, РѕС‚РІРµР·Р»Рё РµС‘ РІ РіРѕСЂРїР°СЂРє Рё РІС‹РїСѓСЃС‚РёР»Рё РІ РІРѕРґРѕС‘Рј\nHappy End!\n";
+		}
+		else {
+			cout << "РњС‹ РЅР°СЃС‚РѕР»СЊРєРѕ Р±Р»Р°РіРѕСЂРѕРґРЅС‹, С‡С‚Рѕ СЂРµС€РёР»Рё СЃРІРѕР±РѕРґРёС‚СЊ СЂС‹Р±Сѓ... Р–Р°Р»СЊ, С‡С‚Рѕ РѕРЅР° СЌС‚РѕРіРѕ РЅРµ РѕС†РµРЅРёС‚.\n";
+		}
+		Status = false;
+	}
+}
+
 
 int main()
 {
-	bool check = false;
-	cout << check << endl << endl;
-
 	setlocale(LC_ALL, "Russian");
-	//неправильно созданная кошка
-	cout << "Создать 1-й объект кошка и поработать с ней\n"; 
-	Fish Cat1("sdsd", "sdsd", -2, 2016); // создаем экземпляр класса Кошка, на задаем неверное значение вес
-	//пытаемся с ней поработать
-	cout << Cat1.getStatus() << endl;
-		Cat1.setName("Барсик");
-		Cat1.getVes();
-		Cat1.Print();
-		Cat1.Voice();
-		Cat1.Go();
-		if (Cat1.setDownVes(-5))
-			cout << Cat1.getName().c_str() << " похудел на " << Cat1.getVes() << " кг. \n";
-		else cout << "Ошибка ввода при уменьшении веса кота " << Cat1.getName().c_str() << "!\n";
+	system("chcp >> 0");
 
+	//РЅРµРїСЂР°РІРёР»СЊРЅРѕ СЃРѕР·РґР°РЅРЅР°СЏ СЂС‹Р±Р°
+	cout << "РЎРѕР·РґР°С‚СЊ 1-Р№ РѕР±СЉРµРєС‚ fish1 Рё РїРѕСЂР°Р±РѕС‚Р°С‚СЊ СЃ РЅРµР№\n";
+	// СЃРѕР·РґР°РµРј СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° Fish (РїСЂР°РІРёР»СЊРЅС‹Рµ РґР°РЅРЅС‹Рµ) Рё РїС‹С‚Р°РµРјСЃСЏ СЃ РЅРµР№ РїРѕСЂР°Р±РѕС‚Р°С‚СЊ
+	Fish fish1(false, 1.3, false, 7, false, 100, { 113.9, 13.5, 5.6, 1.3 }, 15);  
+	//bool FISH_IS_BOUGHT, double weight_in_kilo, bool alive, int shelf_life, bool poisonous, int cost_per_kilo, KPFC kpfc, int cooking_time
+	cout << "Р”Р°РЅРЅС‹Рµ Рѕ СЂС‹Р±Рµ fish1:\n";
+	see(fish1.getFish_is_Bought());
+	see(fish1.getAlive());
+	see(fish1.getCost_per_kilo());
+	see(fish1.getKpfc().kilocalories);
+	see(fish1.getKpfc().proteins);
+	see(fish1.getKpfc().fats);
+	see(fish1.getKpfc().carbohydrates);
+	see(fish1.getPoisonous());
+	see(fish1.getShelf_life());
+	see(fish1.getStatus());
+	see(fish1.getWeight_in_kilo());
+
+	fish1.Buy_fish();
+	fish1.Buy_fish();
+	fish1.DoNothing();
+	see(fish1.getFish_is_Bought());
+
+	fish1.Cook_and_Eat_fish();
+	fish1.PlayDead();
+	fish1.Kill_fish();
+	fish1.Kill_fish();
+	fish1.PlayDead();
+	see(fish1.getAlive());
+
+	fish1.setShelf_life(5);
+	see(fish1.getShelf_life());
+	see(fish1.getPoisonous());
+
+	fish1.Cook_and_Eat_fish();
+	see(fish1.getStatus());
+	fish1.FishLivesMatter();
+
+
+	cout << "\nРЎРѕР·РґР°С‚СЊ 2-Р№ РѕР±СЉРµРєС‚ fish2 (РЅРµРїСЂР°РІРёР»СЊРЅС‹Рµ РґР°РЅРЅС‹Рµ) Рё РїРѕСЂР°Р±РѕС‚Р°С‚СЊ СЃ РЅРµР№\n"; // СЃРѕР·РґР°РµРј СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° Fish
+	Fish fish2(false, -1.3, false, 7, false, 100, { -113.9, 13.5, 5.6, 1.3 }, 15);
+	cout << "Р”Р°РЅРЅС‹Рµ Рѕ СЂС‹Р±Рµ fish1:\n";
+	see(fish2.getFish_is_Bought());
+	see(fish2.getAlive());
+	see(fish2.getCost_per_kilo());
+	see(fish2.getKpfc().kilocalories);
+	see(fish2.getKpfc().proteins);
+	see(fish2.getKpfc().fats);
+	see(fish2.getKpfc().carbohydrates);
+	see(fish2.getPoisonous());
+	see(fish2.getShelf_life());
+	see(fish2.getStatus());
+	see(fish2.getWeight_in_kilo());
+
+	fish2.Buy_fish();
+	fish2.Buy_fish();
+	fish2.DoNothing();
+	see(fish2.getFish_is_Bought());
+
+	fish2.Cook_and_Eat_fish();
+	fish2.PlayDead();
+	fish2.Kill_fish();
+	fish2.Kill_fish();
+	fish2.PlayDead();
+	see(fish2.getAlive());
+
+	fish2.setShelf_life(11);
+	see(fish2.getShelf_life());
+	see(fish2.getPoisonous());
+
+	fish2.Cook_and_Eat_fish();
+	see(fish2.getStatus());
+	fish2.FishLivesMatter();
+
+
+
+	Fish fish3(true, 1.3, true, 7, true, 1000, { 103.2, 16.2, 4.2, 1.1 }, 25);
+	Fish fish4(true, 1.3, true, 7, true, 1000, { 103.2, 16.2, 4.2, 1.1 }, 25);
+	Fish fish5(true, 1.3, true, 7, true, 1000, { 103.2, 16.2, 4.2, 1.1 }, 25);
 	
-	
-	cout << "\nСоздать 2-й объект кошка и поработать с ней\n"; // создаем экземпляр класса Кошка
-	Fish Cat2("Перс", "Белый", 2, 2015);
+	//Р РµР°Р»РёР·Р°С†РёСЏ С…РѕР»РѕРґРёР»СЊРЅРёРєР° - РѕРґРёРЅ РјР°СЃСЃРёРІ, Рё РјР°РіР°Р·РёРЅ - РґСЂСѓРіРѕР№ РјР°СЃСЃРёРІ. РџСЂРё СЃРѕР·РґР°РЅРёРё (Р»РёР±Рѕ СЃР°РјРё Р»РёС‡РЅРѕ Рё РІС‹Р±РѕСЂРѕС‡РЅРѕ) СЂС‹Р±С‹
+	//РїРѕРјРµС‰Р°РµРј РµС‘ РІ РѕРґРёРЅ РёР· РІРµРєС‚РѕСЂРѕРІ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё
+	//РѕС‚ FISH_IS_BOUGHT Рё РґР°Р»СЊС€Рµ СѓР¶Рµ СѓРґР°Р»СЏРµРј РёР· РјР°РіР°Р·РёРЅР° Рё РґРѕР±Р°РІР»СЏРµРј РІ С…РѕР»РѕРґРёР»СЊРЅРёРє РїСЂРё РїРѕРєСѓРїРєРµ
 
-		Cat2.setName("Мурзик");
-		Cat2.Print();
-		Cat2.Voice();
-		Cat2.Go();
-		int StepV; //шаг изменения веса
-
-		StepV = -1; //посадили на диету, но не правильно
-		if (Cat2.setDownVes(StepV))
-			cout << Cat2.getName().c_str() << " похудел на " << Cat2.getVes() << " кг. \n";
-		else cout << "Ошибка ввода при уменьшении веса кота "<< Cat2.getName().c_str() << "!\n";
-		StepV = 1;//посадили на диету правильно
-		if (Cat2.setDownVes(StepV))
-			cout << Cat2.getName().c_str() << " похудел на " << Cat2.getVes() << " кг. \n";
-		else cout << "Ошибка ввода при уменьшении веса кота " << Cat2.getName().c_str() << "!\n";
-
-		StepV = -1; // стали кормить, но не правильно
-		if (Cat2.setUpVes(StepV))
-			cout << Cat2.getName().c_str() << " поправился на " << Cat2.getVes() << " кг. \n";
-		else cout << "Ошибка ввода при увеличении веса кота " << Cat2.getName().c_str() << "!\n";
-		StepV = 1; //кормят правильно
-		if (Cat2.setUpVes(StepV))
-			cout << Cat2.getName().c_str() << " поправился на " << Cat2.getVes() << " кг. \n";
-		else cout << "Ошибка ввода при увеличении веса кота " << Cat2.getName().c_str() << "!\n";
-
-
-	cout << "\nСоздать 3-й объект кошка и поработать с ней\n"; // создаем экземпляр класса Кошка
-	Fish Cat3("Сиамка", "Серая", 3, 2001);
-
-	Cat3.Print();
-
-	//А теперь все кошки будут что-то делать вместе!
-	cout << "\n\n А теперь все кошки будут что-то делать вместе!\n\n";
+	cout << "\n\n Рђ С‚РµРїРµСЂСЊ РІСЃРµ РєРѕС€РєРё Р±СѓРґСѓС‚ С‡С‚Рѕ-С‚Рѕ РґРµР»Р°С‚СЊ РІРјРµСЃС‚Рµ!\n\n";
 	Fish* lFish;
 	lFish = new Fish[3];
-	
-	lFish[0] = Cat1;
-	lFish[1] = Cat2;
-	lFish[2] = Cat3;
 
-	for (int i = 0; i < 3; i++)  
-		{
-			lFish[i].Voice();
-			lFish[i].Go();
-		}
+	lFish[0] = fish3;
+	lFish[1] = fish4;
+	lFish[2] = fish5;
+
+	for (int i = 0; i < 3; i++)
+	{
+		lFish[i].Voice();
+		lFish[i].Go();
+	}
 
 	system("pause");
-    return 0;
+	return 0;
 }
-
